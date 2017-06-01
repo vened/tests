@@ -36,3 +36,26 @@ function createMatrix(size) {
 	}
 	return matrix;
 }
+
+function counts(matrix) {
+	var countMatrix = [];
+	for (var i = 0; i < matrix.length; i++) {
+		var lineMatrix = matrix[i];
+		var lineSum = [];
+		for (var j = 0; j < lineMatrix.length; j++) {
+			var lineSumItem = lineMatrix[j].reduce(function (previousValue, currentValue) {
+				return previousValue + currentValue;
+			});
+			lineSum.push(lineSumItem);
+		}
+		var countMatrixItem = lineSum.join(', ');
+		if (countMatrix.indexOf(countMatrixItem) === -1) {
+			countMatrix.push(countMatrixItem);
+		}
+	}
+	return countMatrix;
+}
+
+var matrix = createMatrix(30);
+
+console.log(counts(matrix));
